@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Tasks</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script defer src="/static/script.js"></script>
+</head>
+<body>
+    <div class="neumorphic-container">
+        <h2>Welcome, {{ username }}</h2>
+        <form id="addTaskForm" method="POST" action="/add_task">
+            <input type="text" name="task" placeholder="New Task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="taskList">
+            {% for task in tasks %}
+                <li class="neumorphic-item">
+                    <form method="POST" action="/toggle_task/{{ task[0] }}">
+                        <button class="checkbox-btn {% if task[2] %}done{% endif %}" type="submit">✔</button>
+                    </form>
+                    <span class="{% if task[2] %}completed{% endif %}">{{ task[1] }}</span>
+                    <form method="POST" action="/delete_task/{{ task[0] }}">
+                        <button class="delete-btn">✘</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="GET" action="/logout">
+            <button class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
