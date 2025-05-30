@@ -24,8 +24,6 @@ Drag tasks between columns to update their status.
 
 Works even when a column is initially empty.
 
-Automatically updates the backend on drop via AJAX.
-
 5. Responsive Design
 Works on desktop and tablets.
 
