@@ -313,4 +313,53 @@ h2 {
     flex-grow: 1;
     min-height: 100px;
 }
-     
+
+@media (max-width: 700px) {
+  .neumorphic-container, .neumorphic-form {
+    max-width: 98vw;
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  #addTaskForm,
+  #addColumnForm {
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  #addTaskForm input[type="text"],
+  #addTaskForm button,
+  #addColumnForm input[type="text"],
+  #addColumnForm select,
+  #addColumnForm button {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .board {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .column {
+    width: 100%;
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .neumorphic-item {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .card {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+  }
+}
