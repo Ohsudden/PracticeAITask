@@ -108,6 +108,20 @@ class ToDoApp:
             session.clear()
             return redirect('/')
 
+        @app.route('/update_task_status/<int:task_id>', methods=['POST'])
+        def update_task_status(task_id):
+            if 'user_id' not in session:
+                return redirect('/')
+
+            new_status = request.get_json()['status']
+            conn = sqlite3.connect('todo.db')
+            c = conn.cursor()
+            c.execute('UPDATE tasks SET status = ? WHERE id = ? AND user_id = ?',
+                      (new_status, task_id, session['user_id']))
+            conn.commit()
+            conn.close()
+            return '', 204
+
     def run(self):
         self.app.run(debug=True)
 

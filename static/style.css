@@ -303,3 +303,14 @@ h2 {
 .logout-btn:hover {
     background: #c9302c;
 }
+.card-list.empty::after {
+            content: "";
+            display: block;
+            min-height: 80px;
+            height: 100%;
+}
+.card-list {
+    flex-grow: 1;
+    min-height: 100px;
+}
+     

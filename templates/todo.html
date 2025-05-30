@@ -22,12 +22,11 @@
         {% for status, tasks in columns.items() %}
         <div class="column">
             <div class="column-header">{{ status }}</div>
-            <div class="card-list">
+            <div class="card-list {% if not tasks %}empty{% endif %}" data-status="{{ status }}" ondragover="event.preventDefault()" ondrop="handleDrop(event, '{{ status }}')">
                 {% for task in tasks %}
-                <div class="card">
+                <div class="card" data-task-id="{{ task[0] }}" draggable="true" ondragstart="handleDragStart(event)">
                     <span class="{% if task[2] %}completed{% endif %}">{{ task[1] }}</span>
                     <form method="POST" action="/toggle_task/{{ task[0] }}">
-                        <button title="Toggle">✓</button>
                     </form>
                     <form method="POST" action="/delete_task/{{ task[0] }}">
                         <button title="Delete">🗑</button>
@@ -42,5 +41,7 @@
     <form method="GET" action="/logout">
         <button class="logout-btn">Logout</button>
     </form>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
