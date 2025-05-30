@@ -171,3 +171,135 @@ h2 {
 .neumorphic-form a:hover {
     text-decoration: underline;
 }
+
+#addColumnForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    max-width: 700px;
+}
+
+#addColumnForm input[type="text"],
+#addColumnForm select {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #e7ecf0;
+    box-shadow: inset 4px 4px 8px #d1d9e6,
+                inset -4px -4px 8px #ffffff;
+    font-size: 16px;
+    color: #555;
+}
+
+#addColumnForm button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #5aac44;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px #4a8d36,
+                -4px -4px 8px #6fd955;
+}
+
+#addColumnForm button:hover {
+    background-color: #519839;
+}
+
+.board {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px;
+    justify-content: center;
+}
+
+.column {
+    background: #f4f5f7;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 6px 6px 12px #d1d9e6,
+                -6px -6px 12px #ffffff;
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.column-header {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card {
+    background: #f4f5f7;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #d1d9e6,
+                -5px -5px 10px #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card span {
+    flex-grow: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.card form {
+    display: inline;
+}
+
+.card button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    transition: transform 0.1s ease;
+}
+
+.card button:hover {
+    transform: scale(1.2);
+}
+
+.logout-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #d9534f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px #b43c3c,
+                -4px -4px 8px #eb5c5c;
+}
+
+.logout-btn:hover {
+    background: #c9302c;
+}

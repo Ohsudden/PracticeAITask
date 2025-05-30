@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 import sqlite3
-import os
 
 class ToDoApp:
     def __init__(self):
@@ -24,6 +23,7 @@ class ToDoApp:
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     description TEXT NOT NULL,
                     completed BOOLEAN NOT NULL DEFAULT 0,
+                    status TEXT NOT NULL DEFAULT 'To Do',
                     user_id INTEGER NOT NULL,
                     FOREIGN KEY(user_id) REFERENCES users(id)
                 )
@@ -71,16 +71,22 @@ class ToDoApp:
                 return redirect('/')
             with sqlite3.connect("todo.db") as con:
                 cur = con.cursor()
-                cur.execute("SELECT id, description, completed FROM tasks WHERE user_id=?", (session['user_id'],))
+                cur.execute("SELECT id, description, completed, status FROM tasks WHERE user_id=?", (session['user_id'],))
                 tasks = cur.fetchall()
-            return render_template('todo.html', tasks=tasks, username=session['username'])
+
+            columns = {"To Do": [], "In Progress": [], "Done": []}
+            for task in tasks:
+                columns[task[3]].append(task)
+
+            return render_template('todo.html', columns=columns, username=session['username'])
 
         @app.route('/add_task', methods=['POST'])
         def add_task():
             task = request.form['task']
+            status = request.form['status']
             with sqlite3.connect("todo.db") as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO tasks (description, user_id) VALUES (?, ?)", (task, session['user_id']))
+                cur.execute("INSERT INTO tasks (description, status, user_id) VALUES (?, ?, ?)", (task, status, session['user_id']))
             return redirect('/todo')
 
         @app.route('/toggle_task/<int:task_id>', methods=['POST'])
